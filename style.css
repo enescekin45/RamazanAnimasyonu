@@ -1,0 +1,580 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #3b82f6;
+  transition: background-color 3s ease;
+  overflow: hidden;
+}
+
+.scene.night {
+  background-color: #0f172a;
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 3s ease;
+}
+
+.scene.night .stars {
+  opacity: 1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.moon {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  width: 80px;
+  height: 80px;
+  background-color: #fef9c3;
+  border-radius: 50%;
+  box-shadow: 0 0 20px 5px rgba(254, 249, 195, 0.5);
+  transform: translateY(-100px);
+  opacity: 0;
+  transition: transform 3s ease, opacity 3s ease;
+}
+
+.scene.night .moon {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.moon::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: #fef9c3;
+  border-radius: 50%;
+  filter: blur(5px);
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.mosque {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 200px;
+  background-color: #0f172a;
+  border-radius: 0 0 50% 50%;
+}
+
+.mosque .dome {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  background-color: #facc15;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.mosque .minaret {
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  height: 150px;
+  background-color: #0f172a;
+}
+
+.mosque .minaret.left {
+  left: -50px;
+}
+
+.mosque .minaret.right {
+  right: -50px;
+}
+
+.mosque .minaret::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  background-color: #facc15;
+  border-radius: 50% 50% 0 0;
+}
+
+.mosque .minaret::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: #0f172a;
+  border-radius: 50%;
+}
+
+.mosque .minaret .crescent {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 5px 0 0 0 #facc15;
+}
+
+.mosque-silhouette {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mosque-dome {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+}
+
+.dome {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  background-color: #0f172a;
+  border-radius: 50% 50% 0 0;
+}
+
+.minaret {
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  height: 150px;
+  background-color: #0f172a;
+}
+
+.minaret.left {
+  left: -40px;
+}
+
+.minaret.right {
+  right: -40px;
+}
+
+.minaret::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  background-color: #0f172a;
+  border-radius: 50% 50% 0 0;
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #0f172a;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  transform: scaleX(3);
+}
+
+.lantern {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+}
+
+.lantern.left {
+  bottom: 220px;
+  left: 25%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.lantern.right {
+  bottom: 250px;
+  right: 25%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.lantern-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: #854d0e;
+  border-radius: 50%;
+}
+
+.lantern-string {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 10px;
+  background-color: #854d0e;
+}
+
+.lantern-body {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 40px;
+  height: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lantern.left .lantern-body {
+  background: linear-gradient(to bottom, #dc2626, #991b1b);
+}
+
+.lantern.right .lantern-body {
+  background: linear-gradient(to bottom, #16a34a, #166534);
+}
+
+.lantern-light {
+  width: 25px;
+  height: 25px;
+  background-color: #fef08a;
+  border-radius: 50%;
+  filter: blur(5px);
+  animation: pulse 2s ease-in-out infinite;
+  opacity: 0.5;
+  transition: opacity 3s ease;
+}
+
+.scene.night .lantern-light {
+  opacity: 1;
+}
+
+.lantern-bottom {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25px;
+  height: 5px;
+  background-color: #854d0e;
+  border-radius: 5px;
+}
+
+.text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: white;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out 0.5s forwards;
+}
+
+.window {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #0f172a;
+  border-radius: 50%;
+  transition: background-color 3s ease;
+}
+
+.scene.night .window {
+  background-color: #facc15;
+}
+
+.window.center {
+  bottom: 180px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.window.left {
+  bottom: 150px;
+  left: 45%;
+}
+
+.window.right {
+  bottom: 150px;
+  left: 55%;
+}
+
+.crescent {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 15px 0 0 0 #fef9c3;
+  opacity: 0;
+  transition: transform 3s ease, opacity 3s ease;
+}
+
+.scene.night .crescent {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+.clouds {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 3s ease;
+}
+
+.scene.night .clouds {
+  opacity: 0;
+}
+
+.cloud {
+  position: absolute;
+  background-color: white;
+  border-radius: 50px;
+  opacity: 0.8;
+  animation: float-cloud 20s linear infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.cloud.small {
+  width: 100px;
+  height: 30px;
+  top: 100px;
+}
+
+.cloud.small::before {
+  width: 40px;
+  height: 40px;
+  top: -20px;
+  left: 15px;
+}
+
+.cloud.small::after {
+  width: 30px;
+  height: 30px;
+  top: -15px;
+  right: 20px;
+}
+
+.cloud.medium {
+  width: 150px;
+  height: 40px;
+  top: 150px;
+  animation-delay: -5s;
+}
+
+.cloud.medium::before {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  left: 25px;
+}
+
+.cloud.medium::after {
+  width: 50px;
+  height: 50px;
+  top: -25px;
+  right: 30px;
+}
+
+.cloud.large {
+  width: 200px;
+  height: 50px;
+  top: 50px;
+  animation-delay: -10s;
+}
+
+.cloud.large::before {
+  width: 80px;
+  height: 80px;
+  top: -40px;
+  left: 35px;
+}
+
+.cloud.large::after {
+  width: 70px;
+  height: 70px;
+  top: -35px;
+  right: 40px;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  transform: rotate(45deg);
+  opacity: 0;
+  animation: shooting 3s ease-in-out infinite;
+  animation-delay: 5s;
+}
+
+.shooting-star:nth-child(2) {
+  top: 30%;
+  left: 70%;
+  animation-delay: 8s;
+}
+
+.shooting-star:nth-child(3) {
+  top: 15%;
+  left: 30%;
+  animation-delay: 12s;
+}
+
+.decoration {
+  position: absolute;
+  width: 100%;
+  bottom: 200px;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 3s ease;
+}
+
+.scene.night .decoration {
+  opacity: 1;
+}
+
+.string-lights {
+  position: relative;
+  width: 80%;
+  height: 20px;
+}
+
+.light {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+}
+
+.light:nth-child(odd) {
+  background-color: #ef4444;
+}
+
+.light:nth-child(even) {
+  background-color: #22c55e;
+}
+
+.light:nth-child(3n) {
+  background-color: #eab308;
+}
+
+.light:nth-child(4n) {
+  background-color: #3b82f6;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes float-cloud {
+  0% { left: -200px; }
+  100% { left: 100%; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes shooting {
+  0% { 
+    transform: translateX(0) translateY(0) rotate(45deg);
+    opacity: 0;
+  }
+  20% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { 
+    transform: translateX(500px) translateY(-500px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

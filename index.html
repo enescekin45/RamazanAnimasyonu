@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ramazan Animasyonu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scene">
+    <div class="stars">
+      <!-- Stars will be added with JavaScript -->
+    </div>
+    
+    <div class="clouds">
+      <div class="cloud small" style="left: -100px;"></div>
+      <div class="cloud medium" style="left: -150px;"></div>
+      <div class="cloud large" style="left: -200px;"></div>
+    </div>
+    
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    
+    <div class="moon"></div>
+    <div class="crescent"></div>
+    
+    <div class="mosque">
+      <div class="dome"></div>
+      <div class="minaret left">
+        <div class="crescent"></div>
+      </div>
+      <div class="minaret right">
+        <div class="crescent"></div>
+      </div>
+    </div>
+    
+    <div class="decoration">
+      <div class="string-lights">
+        <!-- Lights will be added with JavaScript -->
+      </div>
+    </div>
+    
+    <div class="lantern left">
+      <div class="lantern-top"></div>
+      <div class="lantern-string"></div>
+      <div class="lantern-body">
+        <div class="lantern-light"></div>
+      </div>
+      <div class="lantern-bottom"></div>
+    </div>
+    
+    <div class="lantern right">
+      <div class="lantern-top"></div>
+      <div class="lantern-string"></div>
+      <div class="lantern-body">
+        <div class="lantern-light"></div>
+      </div>
+      <div class="lantern-bottom"></div>
+    </div>
+    
+    <div class="text-container">
+      <h1 class="title">Ramazan Ayı Mübarek Olsun</h1>
+      <p class="subtitle">Huzur, bereket ve mutluluk dolu bir Ramazan dileriz!</p>
+    </div>
+  </div>
+
+  <script>
+    // Create stars
+    const stars = document.querySelector('.stars');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.width = `${Math.random() * 3 + 1}px`;
+      star.style.height = star.style.width;
+      star.style.animationDelay = `${Math.random() * 4}s`;
+      stars.appendChild(star);
+    }
+    
+    // Create string lights
+    const stringLights = document.querySelector('.string-lights');
+    for (let i = 0; i < 20; i++) {
+      const light = document.createElement('div');
+      light.classList.add('light');
+      light.style.left = `${i * 5}%`;
+      light.style.top = `${Math.sin(i * 0.5) * 10}px`;
+      light.style.animationDelay = `${Math.random() * 2}s`;
+      stringLights.appendChild(light);
+    }
+    
+    // Toggle day/night
+    const scene = document.querySelector('.scene');
+    setInterval(() => {
+      scene.classList.toggle('night');
+    }, 10000);
+    
+    // Create additional clouds
+    const clouds = document.querySelector('.clouds');
+    for (let i = 0; i < 3; i++) {
+      const cloud = document.createElement('div');
+      const size = ['small', 'medium', 'large'][Math.floor(Math.random() * 3)];
+      cloud.classList.add('cloud', size);
+      cloud.style.top = `${Math.random() * 200 + 50}px`;
+      cloud.style.left = `${Math.random() * 100 - 200}px`;
+      cloud.style.animationDuration = `${Math.random() * 10 + 15}s`;
+      clouds.appendChild(cloud);
+    }
+  </script>
+</body>
+</html>
